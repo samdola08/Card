@@ -66,6 +66,16 @@ let items = [
     function orderNow(id) {
       let item = items.find(i => i.id === id);
       if (!item) return;
+      
+      let somePorducts = items.filter (p => p.name === item.name);
+
+      if (somePorducts.length > 1){
+        localStorage.setItem("selectedProduct", JSON.stringify(item));
+        window.location.href = "productdetail.html";
+        return
+
+      }
+
       localStorage.setItem("orderNow", JSON.stringify([item]));
       window.location.href = "bill.html";
     }
