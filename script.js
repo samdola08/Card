@@ -1,12 +1,12 @@
 let items = [
-      {id:1, name:"Cloth", price:100, color:"Red", image:"one.jpg"},
+      {id:1, name:"Cloth", price:100, color:"", image:"one.jpg"},
       {id:2, name:"Pant", price:200, color:"Blue", image:"two.jpg"},
       {id:3, name:"Shirt", price:500, color:"Green", image:"three.jpg"},
-      {id:4, name:"Pant", price:700, color:"Red", image:"three_one.jpg"},
-      {id:5, name:"Pant", price:700, color:"Red", image:"one_one.jpg"},
+      {id:4, name:"Pant", price:700, color:"Blue", image:"three_one.jpg"},
+      {id:5, name:"Pant", price:700, color:"Green", image:"one_one.jpg"},
       {id:6, name:"Pant", price:700, color:"Red", image:"three_two.avif"},
-      {id:7, name:"Pant", price:700, color:"Red", image:"two_two.jpg"},
-      {id:8, name:"Pant", price:700, color:"Red", image:"one_two.png"},
+      {id:7, name:"Pant", price:700, color:"Blue", image:"two_two.jpg"},
+      {id:8, name:"Pant", price:700, color:"Green", image:"one_two.png"},
       {id:9, name:"Pant", price:700, color:"Red", image:"two_one.jpg"}
     ];
 
@@ -67,17 +67,22 @@ let items = [
       let item = items.find(i => i.id === id);
       if (!item) return;
       
-      let somePorducts = items.filter (p => p.name === item.name);
+      // let somePorducts = items.filter (p => p.name === item.name);
+      // if (somePorducts.length > 1){
+      //   localStorage.setItem("selectedProduct", JSON.stringify(item));
+      //   window.location.href = "productdetail.html";
+      //   return
 
-      if (somePorducts.length > 1){
-        localStorage.setItem("selectedProduct", JSON.stringify(item));
-        window.location.href = "productdetail.html";
-        return
+      // }
+      const validColors = ["Red", "Green", "Blue"]
+      if (validColors.includes(item.color)){
 
+        localStorage.setItem("orderNow", JSON.stringify([item]));
+        window.location.href = "bill.html";
+      }else {
+        localStorage.setItem("selectedProduct" , JSON.stringify(item));
+        window.location.href ="productdetail.html"
       }
-
-      localStorage.setItem("orderNow", JSON.stringify([item]));
-      window.location.href = "bill.html";
     }
 
     document.addEventListener("DOMContentLoaded", function(){
